@@ -13,7 +13,7 @@ public class ALPRO3 {
         System.out.println("sumatoriaKN-recursivo: " + sumatoriaKN(4, 5));
 
         //ejecucion ejercicio 3
-        ArrayList a = new ArrayList();
+        ArrayList a = new ArrayList(); 
         a.add(1);
         a.add(2);
         a.add(3);
