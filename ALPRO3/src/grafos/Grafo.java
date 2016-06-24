@@ -12,9 +12,9 @@ import java.util.List;
  * @author marco.mangan@pucrs.br
  *
  */
-public class Grafo {
+public abstract class Grafo {
 
-	private int dados[][];
+	protected int dados[][];
 
 	public Grafo(int tamanho) {
 		checkTamanho(tamanho);
@@ -31,7 +31,7 @@ public class Grafo {
 
 			while ((linha = bf.readLine()) != null) {
 				aresta = linha.split(" ");
-				addAresta(Integer.parseInt(aresta[0]), Integer.parseInt(aresta[1]));
+				addAresta(Integer.parseInt(aresta[0]), Integer.parseInt(aresta[1]), Integer.parseInt(aresta[2]));
 			}
 		} catch (Exception e) {
 			throw e;
@@ -44,18 +44,24 @@ public class Grafo {
 		dados[origem][destino] = 1;
 	}
 
+	public void addAresta(int origem, int destino, int peso) {
+		checkOrigem(origem);
+		checkDestino(destino);
+		dados[origem][destino] = peso;
+	}
+
 	private void checkTamanho(int tamanho) {
 		if (tamanho <= 0)
 			throw new IllegalArgumentException("O grafo deve ter um ou mais nodos.");
 	}
 
-	private void checkDestino(int destino) {
-		if (destino < 0 || destino >= dados.length)
+	protected void checkDestino(int destino) {
+		if (destino < 0 && destino >= dados.length)
 			throw new IllegalArgumentException("O nodo do destino não existe");
 	}
 
-	private void checkOrigem(int origem) {
-		if (origem < 0 || origem >= dados.length)
+	protected void checkOrigem(int origem) {
+		if (origem < 0 && origem >= dados.length)
 			throw new IllegalArgumentException("O nodo da origem não existe");
 	}
 
@@ -96,6 +102,10 @@ public class Grafo {
 			}
 		}
 	}
+	
+
+	
+	
 
 	@Override
 	public String toString() {
