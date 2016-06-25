@@ -6,7 +6,7 @@ public class GrafoApp {
 		System.out.println("Grafos");
 		
 		GrafoDirecionado g = new GrafoDirecionado("g7.txt");
-                g.djikstra(0, 0);
+                System.out.println("Costo camino: " + g.djikstra(0, 2));
 		System.out.println(g);
 		
 		
